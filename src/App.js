@@ -34,12 +34,20 @@ class App extends Component {
     this.state = {
       currentMovie: {}
     }
+
+    this.onSelectMovie = this.onSelectMovie.bind(this);
   }
+
+  onSelectMovie(movie) {
+    this.setState({currentMovie: movie});
+  }
+
   render() {
     return (
       <div className="App">
         <MovieList
           movies={movies}
+          onClick={this.onSelectMovie}
         />
         <MovieDetail movie={this.state.currentMovie} />
       </div>
