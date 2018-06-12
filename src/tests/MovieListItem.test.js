@@ -25,4 +25,3 @@ it('renders a release date', () => {
     expect(crawl.length).toEqual(1);
     expect(crawl.text()).toEqual("2001-01-01")
 });
-

@@ -30,3 +30,7 @@ it('renders a list of movies', () => {
 
     expect(component.find("MovieListItem").length).toEqual(3);
 });
+
+/* it('runs selectMovie when clicking a movie list item', () => {
+    
+}); */

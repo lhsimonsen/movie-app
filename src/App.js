@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import './App.css';
 import MovieList from './components/MovieList';
+import MovieDetail from './components/MovieDetail';
 
 const movies = [
   {
@@ -27,10 +28,20 @@ const movies = [
 ];
 
 class App extends Component {
+  constructor() {
+    super();
+
+    this.state = {
+      currentMovie: {}
+    }
+  }
   render() {
     return (
       <div className="App">
-        <MovieList movies={movies} />
+        <MovieList
+          movies={movies}
+        />
+        <MovieDetail movie={this.state.currentMovie} />
       </div>
     );
   }

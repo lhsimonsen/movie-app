@@ -11,12 +11,10 @@ it('renders without crashing', () => {
 
 it('renders a movie list', () => {
   const component = shallow(<App />);
-
   expect(component.find("MovieList").length).toEqual(1);
 });
 
 it('renders a movie detail', () => {
   const component = shallow(<App />);
-
   expect(component.find("MovieDetail").length).toEqual(1);
 });
