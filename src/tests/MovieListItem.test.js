@@ -10,8 +10,11 @@ const movie = {
     "release_date": "2001-01-01",
 };
 
+const getComponent = props =>
+    shallow(<MovieListItem movie={movie} onClick={() => {}} {...props} />);
+
 it('renders a title', () => {
-    const component = shallow(<MovieListItem movie={movie} />);
+    const component = getComponent();
     const title = component.find(".movie-title");
 
     expect(title.length).toEqual(1);
@@ -19,7 +22,7 @@ it('renders a title', () => {
 });
 
 it('renders a release date', () => {
-    const component = shallow(<MovieListItem movie={movie} />);
+    const component = getComponent();
     const crawl = component.find(".movie-release-date");
     
     expect(crawl.length).toEqual(1);

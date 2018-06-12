@@ -10,9 +10,20 @@ const movie = {
     "release_date": "2001-01-01",
 };
 
+const getComponent = props =>
+    shallow(<MovieDetail movie={{}} {...props} />);
+
 it('renders an empty state if no movie is selected', () => {
-    const component = shallow(<MovieDetail movie={{}} />);
+    const component = getComponent();
     const emptyState = component.find(".movie-detail-empty");
 
     expect(emptyState.text()).toEqual("No movie selected");
+});
+
+it('renders movie info if a movie is selected', () => {
+    const component = getComponent({movie});
+
+    expect(component.find(".movie-detail-title").text()).toEqual("Foo");
+    expect(component.find(".movie-detail-description").text()).toEqual("foo foo foo");
+    expect(component.find(".movie-detail-director").text()).toEqual("Foo Bar");
 });

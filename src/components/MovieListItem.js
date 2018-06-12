@@ -13,7 +13,8 @@ const MovieListItem = (props) => {
 }
 
 MovieListItem.propTypes = {
-  movie: PropTypes.object.isRequired
+  movie: PropTypes.object.isRequired,
+  onClick: PropTypes.func.isRequired,
 };
 
 export default MovieListItem;

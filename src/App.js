@@ -3,6 +3,7 @@ import './App.css';
 import MovieList from './components/MovieList';
 import MovieDetail from './components/MovieDetail';
 
+// TODO: Change to real endpoint
 const movies = [
   {
       "title": "Foo",
