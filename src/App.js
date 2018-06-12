@@ -48,7 +48,7 @@ class App extends Component {
       <div className="App">
         <MovieList
           movies={movies}
-          onClick={this.onSelectMovie}
+          onClick={this.onSelectMovie} // TODO: Use Provider-pattern for passing prop to MovieListItem
         />
         <MovieDetail movie={this.state.currentMovie} />
       </div>
