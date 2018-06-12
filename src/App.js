@@ -1,18 +1,36 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
 import './App.css';
+import MovieList from './components/MovieList';
+
+const movies = [
+  {
+      "title": "Foo",
+      "opening_crawl": "foo foo foo",
+      "director": "Foo Bar",
+      "episode_id": 1,
+      "release_date": "2001-01-01",
+  },
+  {
+      "title": "Bar",
+      "opening_crawl": "bar bar bar",
+      "director": "Bar Baz",
+      "episode_id": 2,
+      "release_date": "2001-02-02",
+  },
+  {
+      "title": "Baz",
+      "opening_crawl": "baz baz baz",
+      "director": "Baz Biz",
+      "episode_id": 3,
+      "release_date": "2003-03-03",
+  },
+];
 
 class App extends Component {
   render() {
     return (
       <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <h1 className="App-title">Welcome to React</h1>
-        </header>
-        <p className="App-intro">
-          To get started, edit <code>src/App.js</code> and save to reload.
-        </p>
+        <MovieList movies={movies} />
       </div>
     );
   }
