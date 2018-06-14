@@ -23,3 +23,8 @@ it('renders a sort by button', () => {
   const component = shallow(<App />);
   expect(component.find("SortBy").length).toEqual(1);
 });
+
+it('renders a search bar', () => {
+  const component = shallow(<App />);
+  expect(component.find("SearchBar").length).toEqual(1);
+});

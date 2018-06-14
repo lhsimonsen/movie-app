@@ -3,6 +3,7 @@ import './App.css';
 import MovieList from './components/MovieList';
 import MovieDetail from './components/MovieDetail';
 import SortBy from './components/SortBy';
+import SearchBar from './components/SearchBar';
 import {flattenMovie, sortByProp} from './utils';
 import {testData} from './utils/test-data';
 
@@ -18,6 +19,7 @@ class App extends Component {
     }
 
     this.getSortedMovies = this.getSortedMovies.bind(this);
+    this.setSortBy = this.setSortBy.bind(this);
   }
 
   getNormalizedData(data) {
@@ -33,13 +35,18 @@ class App extends Component {
     return R.isNil(sortBy) ? movies : sortByProp(sortBy)(movies);
   }
 
+  setSortBy(value) {
+    this.setState({sortBy: value});
+  }
+
   render() {
     const {currentMovie} = this.state;
     const movies = R.compose(this.getSortedMovies, this.getNormalizedData)(testData);
 
     return (
       <div className="App">
-        <SortBy />
+        <SortBy setSortBy={value => this.setSortBy(value)}/>
+        <SearchBar />
         <MovieList
           movies={movies}
           onClick={id => this.setState({currentMovie: id})}

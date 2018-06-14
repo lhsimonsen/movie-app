@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import SortByList from './SortByList';
 import PropTypes from 'prop-types';
+import SortByListItem from './SortByListItem';
 
 class SortBy extends Component {
     constructor() {
@@ -18,17 +19,30 @@ class SortBy extends Component {
         this.setState({showSortByList: !showSortByList});
     }
 
+    renderSortItems(setSortBy) {
+        return (
+            <SortByList onClick={setSortBy}>
+                <SortByListItem label="Episode" value="episode_id" />
+                <SortByListItem label="Year" value="release_date" />
+            </SortByList>
+        );
+    }
+
     render () {
         const {showSortByList} = this.state;
+        const {setSortBy} = this.props;
+
         return (
             <div>
                 <button onClick={() => this.toggleSortOptions()}>Sort by</button>
-                {showSortByList && <SortByList><li>hej</li><li>hadet</li></SortByList>}
+                {showSortByList && this.renderSortItems(setSortBy)}
             </div>
         )
     }
 }
 
-SortBy.propTypes = {};
+SortBy.propTypes = {
+    setSortBy: PropTypes.func.isRequired
+};
 
 export default SortBy;

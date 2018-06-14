@@ -1,11 +1,21 @@
 import React from 'react';
-import PropTypes from 'prop-types';
+import SortByListItem from './SortByListItem';
 
-const SortByList = (props) => 
-    <ul>{props.children}</ul>
+const renderChildren = props => {
+  return React.Children.map(props.children, child => {
+    if (child.type === SortByListItem)
+      return React.cloneElement(child, {
+        onClick: props.onClick
+      })
+    else
+      return child
+  })
+}
 
-/* MovieDetail.propTypes = {
-  movie: PropTypes.object
-}; */
+const SortByList = (props) => {
+  return (
+    <ul>{renderChildren(props)}</ul>
+  );
+};
 
 export default SortByList;

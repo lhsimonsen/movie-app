@@ -3,7 +3,7 @@ import { shallow } from 'enzyme';
 import SortBy from '../components/SortBy';
 
 const getComponent = props =>
-    shallow(<SortBy {...props} />);
+    shallow(<SortBy setSortBy={() => {}} {...props} />);
 
 it('has a button with text', () => {
     const component = getComponent({});
