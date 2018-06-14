@@ -1,33 +1,18 @@
-import React, {Component} from 'react';
+import React from 'react';
 import {trimVal} from '../utils';
 // import PropTypes from 'prop-types';
 
 const R = require('ramda');
 
-class SearchBar extends Component {
-    constructor() {
-      super();
+const SearchBar = props => {
+    const {searchValue, setSearchValue} = props;
 
-      this.state = {
-          inputValue: ""
-      }
-
-      this.updateInputValue = this.updateInputValue.bind(this);
-    }
-
-    updateInputValue(value) {
-        this.setState({inputValue: value});
-    }
-
-    render () {
-        const {inputValue} = this.state;
-        return (
-            <input
-                value={inputValue}
-                onChange={e => R.compose(this.updateInputValue, trimVal)(e.target.value)}
-            />
-        )
-    }
+    return (
+        <input
+            value={searchValue}
+            onChange={e => R.compose(setSearchValue, trimVal)(e.target.value)}
+        />
+    )
 }
 
 /* SortBy.propTypes = {
