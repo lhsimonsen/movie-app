@@ -1,17 +1,10 @@
 import React from 'react';
 import { shallow } from 'enzyme';
 import MovieDetail from '../components/MovieDetail';
-
-const movie = {
-    "title": "Foo",
-    "opening_crawl": "foo foo foo",
-    "director": "Foo Bar",
-    "episode_id": 1,
-    "release_date": "2001-01-01",
-};
+import {movie} from './testData';
 
 const getComponent = props =>
-    shallow(<MovieDetail movie={{}} {...props} />);
+    shallow(<MovieDetail movie={null} {...props} />);
 
 it('renders an empty state if no movie is selected', () => {
     const component = getComponent();

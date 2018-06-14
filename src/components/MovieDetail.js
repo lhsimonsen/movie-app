@@ -14,7 +14,7 @@ const renderEmptyState = () =>
     <span className="movie-detail-empty">No movie selected</span>
 
 const MovieDetail = ({movie}) => 
-    R.isEmpty(movie)
+    R.isNil(movie)
         ? renderEmptyState()
         : renderMovie(movie)
 

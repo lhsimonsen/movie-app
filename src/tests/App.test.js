@@ -18,3 +18,8 @@ it('renders a movie detail', () => {
   const component = shallow(<App />);
   expect(component.find("MovieDetail").length).toEqual(1);
 });
+
+it('renders a sort by button', () => {
+  const component = shallow(<App />);
+  expect(component.find("SortBy").length).toEqual(1);
+});

@@ -1,14 +1,7 @@
 import React from 'react';
 import { shallow } from 'enzyme';
 import MovieListItem from '../components/MovieListItem';
-
-const movie = {
-    "title": "Foo",
-    "opening_crawl": "foo foo foo",
-    "director": "Foo Bar",
-    "episode_id": 1,
-    "release_date": "2001-01-01",
-};
+import {movie} from './testData';
 
 const getComponent = props =>
     shallow(<MovieListItem movie={movie} onClick={() => {}} {...props} />);

@@ -4,12 +4,15 @@ import MovieListItem from './MovieListItem';
 
 const R = require('ramda');
 
-const getItem = onClick => m =>
-  <MovieListItem
-    key={m.title}
-    movie={m}
-    onClick={onClick}
-  />
+const getItem = onClick => m => {
+  return (
+    <MovieListItem
+      key={m.title}
+      movie={m}
+      onClick={onClick}
+    />
+  );
+}
 
 const MovieList = (props) => {
   const {movies, onClick} = props;

@@ -2,55 +2,49 @@ import React, { Component } from 'react';
 import './App.css';
 import MovieList from './components/MovieList';
 import MovieDetail from './components/MovieDetail';
+import SortBy from './components/SortBy';
+import {flattenMovie, sortByProp} from './utils';
+import {testData} from './utils/test-data';
 
-// TODO: Change to real endpoint
-const movies = [
-  {
-      "title": "Foo",
-      "opening_crawl": "foo foo foo",
-      "director": "Foo Bar",
-      "episode_id": 1,
-      "release_date": "2001-01-01",
-  },
-  {
-      "title": "Bar",
-      "opening_crawl": "bar bar bar",
-      "director": "Bar Baz",
-      "episode_id": 2,
-      "release_date": "2001-02-02",
-  },
-  {
-      "title": "Baz",
-      "opening_crawl": "baz baz baz",
-      "director": "Baz Biz",
-      "episode_id": 3,
-      "release_date": "2003-03-03",
-  },
-];
+const R = require('ramda');
 
 class App extends Component {
   constructor() {
     super();
 
     this.state = {
-      currentMovie: {}
+      currentMovie: null,
+      sortBy: null,
     }
 
-    this.onSelectMovie = this.onSelectMovie.bind(this);
+    this.getSortedMovies = this.getSortedMovies.bind(this);
   }
 
-  onSelectMovie(movie) {
-    this.setState({currentMovie: movie});
+  getNormalizedData(data) {
+    return R.map(flattenMovie, data);
+  }
+
+  getSelectedMovie(id, movies) {
+    return R.find(R.propEq('id', id), movies);
+  }
+
+  getSortedMovies(movies) {
+    const {sortBy} = this.state;
+    return R.isNil(sortBy) ? movies : sortByProp(sortBy)(movies);
   }
 
   render() {
+    const {currentMovie} = this.state;
+    const movies = R.compose(this.getSortedMovies, this.getNormalizedData)(testData);
+
     return (
       <div className="App">
+        <SortBy />
         <MovieList
           movies={movies}
-          onClick={this.onSelectMovie} // TODO: Use Provider-pattern for passing prop to MovieListItem
+          onClick={id => this.setState({currentMovie: id})}
         />
-        <MovieDetail movie={this.state.currentMovie} />
+        <MovieDetail movie={this.getSelectedMovie(currentMovie, movies)} />
       </div>
     );
   }
