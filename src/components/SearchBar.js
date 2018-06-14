@@ -1,6 +1,6 @@
 import React from 'react';
 import {trimVal} from '../utils';
-// import PropTypes from 'prop-types';
+import PropTypes from 'prop-types';
 
 const R = require('ramda');
 
@@ -10,13 +10,14 @@ const SearchBar = props => {
     return (
         <input
             value={searchValue}
-            onChange={e => R.compose(setSearchValue, trimVal)(e.target.value)}
+            onChange={e => setSearchValue(e.target.value)}
         />
     )
 }
 
-/* SortBy.propTypes = {
-    setSortBy: PropTypes.func.isRequired
-}; */
+SearchBar.propTypes = {
+    setSearchValue: PropTypes.func.isRequired,
+    searchValue: PropTypes.string.isRequired
+};
 
 export default SearchBar;
