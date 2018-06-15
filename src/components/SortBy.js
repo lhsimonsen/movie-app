@@ -1,12 +1,31 @@
 import React, {Component} from 'react';
-import {css} from 'react-emotion';
+import styled, {css} from 'react-emotion';
 import SortByList from './SortByList';
 import PropTypes from 'prop-types';
 import SortByListItem from './SortByListItem';
+import {colors, borders, transitions} from '../utils/constants';
 
 const sortBy = css`
     position: relative;
     margin-right: 10px;
+`;
+
+const Button = styled.button`
+    height: 31px;
+    width: 70px;
+    border: ${borders.primary};
+    border-radius: ${borders.slight};
+    cursor: pointer;
+    color: ${colors.dark};
+    outline: none;
+    transition: ${transitions.basic};
+    &:hover {
+        background: ${colors.primary};
+        border-color: ${colors.dark};
+    }
+    &:focus {
+        border-color: ${colors.accent};
+    }
 `;
 
 class SortBy extends Component {
@@ -40,7 +59,12 @@ class SortBy extends Component {
 
         return (
             <div className={sortBy}>
-                <button onClick={() => this.toggleSortOptions()}>Sort by...</button>
+                <Button
+                    className="sort-by-button"
+                    onClick={() => this.toggleSortOptions()}
+                >
+                    Sort by...
+                </Button>
                 {showSortByList && this.renderSortItems(setSortBy)}
             </div>
         )

@@ -1,11 +1,23 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import {css} from 'react-emotion';
+import {colors, borders, transitions} from '../utils/constants';
 
 const R = require('ramda');
 
 const searchBar = css`
     flex-grow: 1;
+    border: ${borders.primary};
+    border-radius: ${borders.slight};
+    padding: 8px;
+    outline: none;
+    transition: ${transitions.basic};
+    &:hover {
+        border-color: ${colors.dark};
+    }
+    &:focus {
+        border-color: ${colors.accent};
+    }
 `;
 
 const SearchBar = props => {
@@ -16,6 +28,7 @@ const SearchBar = props => {
             className={searchBar}
             value={searchValue}
             onChange={e => setSearchValue(e.target.value)}
+            placeholder="Type to search..."
         />
     )
 }

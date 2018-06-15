@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import styled from 'react-emotion'
 import {flattenMovie, sortByProp, filterByValue} from './utils';
 import {testData} from './utils/test-data'; // TODO: use real endpoint
+import {colors, borders} from './utils/constants';
 import MovieList from './components/MovieList';
 import MovieDetail from './components/MovieDetail';
 import SortBy from './components/SortBy';
@@ -20,8 +21,8 @@ const Outer = styled.div`
   flex-direction: row;
 
   .dark {
-    background: #f7f8fa;
-    border: 1px solid #e5ebef;
+    background: ${colors.primary};
+    border: ${borders.primary};
     padding: 15px 10px;
   }
 `;
@@ -31,7 +32,7 @@ const Inner = styled.div`
   flex: 1;
 
   .left {
-    border-right: 1px solid #e5ebef;
+    border-right: ${borders.primary};
   }
 
   .right {
