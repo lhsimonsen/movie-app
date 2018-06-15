@@ -1,14 +1,19 @@
 import React from 'react';
-import {trimVal} from '../utils';
 import PropTypes from 'prop-types';
+import {css} from 'react-emotion';
 
 const R = require('ramda');
+
+const searchBar = css`
+    flex-grow: 1;
+`;
 
 const SearchBar = props => {
     const {searchValue, setSearchValue} = props;
 
     return (
         <input
+            className={searchBar}
             value={searchValue}
             onChange={e => setSearchValue(e.target.value)}
         />

@@ -1,13 +1,43 @@
 import React, { Component } from 'react';
-import './App.css';
+import styled from 'react-emotion'
+import {flattenMovie, sortByProp, filterByValue} from './utils';
+import {testData} from './utils/test-data'; // TODO: use real endpoint
 import MovieList from './components/MovieList';
 import MovieDetail from './components/MovieDetail';
 import SortBy from './components/SortBy';
 import SearchBar from './components/SearchBar';
-import {flattenMovie, sortByProp, filterByValue} from './utils';
-import {testData} from './utils/test-data';
 
 const R = require('ramda');
+
+const Wrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+`;
+
+const Outer = styled.div`
+  flex: 1;
+  display: flex;
+  flex-direction: row;
+
+  .dark {
+    background: #f7f8fa;
+    border: 1px solid #e5ebef;
+    padding: 15px 10px;
+  }
+`;
+
+const Inner = styled.div`
+  display: flex;
+  flex: 1;
+
+  .left {
+    border-right: 1px solid #e5ebef;
+  }
+
+  .right {
+    padding: 30px;
+  }
+`;
 
 class App extends Component {
   constructor() {
@@ -55,18 +85,28 @@ class App extends Component {
     const movies = R.compose(this.getFilteredMovies, this.getSortedMovies, this.getNormalizedData)(testData);
 
     return (
-      <div className="App">
-        <SortBy setSortBy={value => this.setSortBy(value)}/>
-        <SearchBar
-          searchValue={searchValue}
-          setSearchValue={val => this.setSearchValue(val)}
-        />
-        <MovieList
-          movies={movies}
-          onClick={id => this.setState({currentMovie: id})}
-        />
-        <MovieDetail movie={this.getSelectedMovie(currentMovie, movies)} />
-      </div>
+      <Wrapper>
+        <Outer className="dark">
+          <Inner>
+            <SortBy setSortBy={value => this.setSortBy(value)}/>
+            <SearchBar
+              searchValue={searchValue}
+              setSearchValue={val => this.setSearchValue(val)}
+            />
+          </Inner>
+        </Outer>
+        <Outer>
+          <Inner className="left">
+            <MovieList
+              movies={movies}
+              onClick={id => this.setState({currentMovie: id})}
+            />
+          </Inner>
+          <Inner className="right">
+            <MovieDetail movie={this.getSelectedMovie(currentMovie, movies)} />
+          </Inner>
+        </Outer>
+      </Wrapper>
     );
   }
 }

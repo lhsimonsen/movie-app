@@ -1,5 +1,16 @@
 import React from 'react';
+import {css} from 'react-emotion';
 import SortByListItem from './SortByListItem';
+
+const sortByList = css`
+  position: absolute;
+  top: 20px;
+  left: 0;
+
+  padding: 10px;
+  background: #fafafa;
+  border: 1px solid #aaa;
+`;
 
 const renderChildren = props => {
   return React.Children.map(props.children, child => {
@@ -14,7 +25,7 @@ const renderChildren = props => {
 
 const SortByList = (props) => {
   return (
-    <ul>{renderChildren(props)}</ul>
+    <ul className={sortByList}>{renderChildren(props)}</ul>
   );
 };
 
