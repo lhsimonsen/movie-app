@@ -7,5 +7,5 @@ const getComponent = props =>
 
 it('has a label', () => {
     const component = getComponent({label: "Episode", value: "episode_id"});
-    expect(component.text()).toEqual("Episode");
+    expect(component.children(0).text()).toEqual("Episode");
 });

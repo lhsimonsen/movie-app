@@ -20,6 +20,15 @@ const Text = styled.li`
     }
 `;
 
+const Empty = styled.span`
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 11px;
+    color: ${colors.light}
+`;
+
 const renderMovie = movie =>
     <ul>
         <Title className="movie-detail-title">{movie.title}</Title>
@@ -28,7 +37,7 @@ const renderMovie = movie =>
     </ul>
 
 const renderEmptyState = () =>
-    <span className="movie-detail-empty">No movie selected</span>
+    <Empty className="movie-detail-empty">No movie selected</Empty>
 
 const MovieDetail = ({movie}) => 
     R.isNil(movie)

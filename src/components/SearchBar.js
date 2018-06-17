@@ -3,8 +3,6 @@ import PropTypes from 'prop-types';
 import {css} from 'react-emotion';
 import {colors, borders, transitions} from '../utils/constants';
 
-const R = require('ramda');
-
 const searchBar = css`
     flex-grow: 1;
     border: ${borders.primary};

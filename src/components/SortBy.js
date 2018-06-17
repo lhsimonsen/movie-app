@@ -37,6 +37,7 @@ class SortBy extends Component {
       }
   
       this.toggleSortOptions = this.toggleSortOptions.bind(this);
+      this.hideSortByList = this.hideSortByList.bind(this);
     }
 
     toggleSortOptions() {
@@ -44,9 +45,16 @@ class SortBy extends Component {
         this.setState({showSortByList: !showSortByList});
     }
 
+    hideSortByList() {
+        this.setState({showSortByList: false})
+    }
+
     renderSortItems(setSortBy) {
         return (
-            <SortByList onClick={setSortBy}>
+            <SortByList
+                onClick={setSortBy}
+                onCloseSort={() => this.hideSortByList()}
+            >
                 <SortByListItem label="Episode" value="episode_id" />
                 <SortByListItem label="Year" value="release_date" />
             </SortByList>

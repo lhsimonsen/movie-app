@@ -1,15 +1,40 @@
 import React from 'react';
-import {css} from 'react-emotion';
+import styled, {css} from 'react-emotion';
+import PropTypes from 'prop-types';
 import SortByListItem from './SortByListItem';
+import MdClose from 'react-icons/lib/md/close';
+import {colors, borders, transitions} from '../utils/constants';
 
-const sortByList = css`
+const Wrapper = styled.div`
   position: absolute;
-  top: 20px;
+  z-index: 10;
+  top: 35px;
   left: 0;
-
-  padding: 10px;
+  width: 300px;
   background: #fafafa;
-  border: 1px solid #aaa;
+  border: ${borders.primary};
+  border-radius: ${borders.slight};
+  font-size: 11px;
+`;
+
+const Dismiss = styled.div`
+  padding: 5px;
+  border-bottom: ${borders.primary};
+  padding: 10px;
+`;
+
+const Header = styled.span`
+  display: inline-block;
+  font-weight: 600;
+`;
+
+const Icon = css`
+  float: right;
+  cursor: pointer;
+  transition: ${transitions.basic};
+  &:hover {
+    color: ${colors.accent}
+  }
 `;
 
 const renderChildren = props => {
@@ -24,9 +49,25 @@ const renderChildren = props => {
 }
 
 const SortByList = (props) => {
+  const {onCloseSort} = props;
+
   return (
-    <ul className={sortByList}>{renderChildren(props)}</ul>
+    <Wrapper>
+      <Dismiss>
+          <Header>Sort by</Header>
+          <MdClose
+            className={Icon}
+            onClick={() => onCloseSort()}
+          />
+      </Dismiss>
+      <ul>{renderChildren(props)}</ul>
+    </Wrapper>
   );
+};
+
+SortByList.propTypes = {
+  onClick: PropTypes.func.isRequired,
+  onCloseSort: PropTypes.func.isRequired,
 };
 
 export default SortByList;

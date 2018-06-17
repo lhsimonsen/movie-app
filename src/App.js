@@ -28,6 +28,7 @@ const Outer = styled.div`
 `;
 
 const Inner = styled.div`
+  position: relative;
   display: flex;
   flex: 1;
 
@@ -83,7 +84,8 @@ class App extends Component {
 
   render() {
     const {currentMovie, searchValue} = this.state;
-    const movies = R.compose(this.getFilteredMovies, this.getSortedMovies, this.getNormalizedData)(testData);
+    const movies = R.compose(this.getNormalizedData)(testData);
+    const filteredMovies = R.compose(this.getFilteredMovies, this.getSortedMovies)(movies);
 
     return (
       <Wrapper>
@@ -99,7 +101,7 @@ class App extends Component {
         <Outer>
           <Inner className="left">
             <MovieList
-              movies={movies}
+              movies={filteredMovies}
               onClick={id => this.setState({currentMovie: id})}
             />
           </Inner>
