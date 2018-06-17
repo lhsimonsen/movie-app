@@ -1,7 +1,7 @@
-import {flattenMovie, sortByProp, filterByValue, trimVal} from '../utils';
+import {flattenMovie, sortByProp, filterByValue} from '../utils';
 import {movies, moviesNested} from './testData';
 
-it('flattens a movie object using moviesNested', () => {
+it('flattens a movie object using flattenMovie', () => {
     const expected = {
         title: "Foo",
         opening_crawl: "foo foo foo",
@@ -63,8 +63,4 @@ it('filters a movie by search term using filterByValue', () => {
         }
     ];
     expect(filterByValue("bA")(movies)).toEqual(expected);
-});
-
-it('trims a value using trimVal', () => {
-    expect(trimVal(" foo foo ")).toEqual("foo foo");
 });

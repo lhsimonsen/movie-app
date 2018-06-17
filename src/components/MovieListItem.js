@@ -1,10 +1,10 @@
 import React from 'react';
 import styled from 'react-emotion';
-import {colors, borders, transitions} from '../utils/constants';
+import {colors, borders, transitions, breakpoints} from '../utils/constants';
 import PropTypes from 'prop-types';
 
 const ListItem = styled.li`
-    display: flex;
+    display: block;
     padding: 10px;
     border-bottom: ${borders.primary};
     cursor: pointer;
@@ -13,10 +13,20 @@ const ListItem = styled.li`
     &:hover {
         background: ${colors.primary};
     }
+    @media (min-width: ${breakpoints.mobile}px) {
+        display: flex;
+    }
 `;
 
 const Text = styled.span`
     background: transparent;
+    display: block;
+    text-align: center;
+    margin-bottom: 5px;
+    @media (min-width: ${breakpoints.mobile}px) {
+        display: inline-block;
+        margin-bottom: 0;
+    }
     .small {
         font-size: 9px;
         line-height: 11px;
@@ -24,20 +34,25 @@ const Text = styled.span`
         color: ${colors.light}
     }
     .date {
-        flex: 1;
-        text-align: right;
+        text-align: center;
         color: ${colors.light};
+        @media (min-width: ${breakpoints.mobile}px) {
+            flex: 1;
+            text-align: right;
+        }
     }
 `;
 
 const Wrapper = styled.span`
     background: transparent;
-    flex: 4;
+    @media (min-width: ${breakpoints.mobile}px) {
+        flex: 4;
+    }
 `;
 
 const MovieListItem = (props) => {
     const {movie, onClick} = props;
-
+    
     return (
         <ListItem onClick={() => onClick(movie.id)}>
             <Wrapper>

@@ -17,10 +17,7 @@ const SortByListItem = (props) => {
     const {label, value, onClick} = props;
     
     return (
-        <Item
-            onClick={() => onClick(value)}
-            data-value={value}
-        >
+        <Item onClick={() => onClick(value)}>
             {label}
         </Item>
     );

@@ -17,6 +17,7 @@ export const transitions = {
 
 export const breakpoints = {
     tablet: 700,
+    mobile: 340,
 }
 
 export const endpoint = "https://star-wars-api.herokuapp.com/films";

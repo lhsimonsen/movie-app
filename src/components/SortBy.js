@@ -1,11 +1,11 @@
 import React, {Component} from 'react';
-import styled, {css} from 'react-emotion';
+import styled from 'react-emotion';
 import SortByList from './SortByList';
 import PropTypes from 'prop-types';
 import SortByListItem from './SortByListItem';
 import {colors, borders, transitions} from '../utils/constants';
 
-const sortBy = css`
+const Wrapper = styled.div`
     position: relative;
     margin-right: 10px;
 `;
@@ -66,7 +66,7 @@ class SortBy extends Component {
         const {setSortBy} = this.props;
 
         return (
-            <div className={sortBy}>
+            <Wrapper>
                 <Button
                     className="sort-by-button"
                     onClick={() => this.toggleSortOptions()}
@@ -74,7 +74,7 @@ class SortBy extends Component {
                     Sort by...
                 </Button>
                 {showSortByList && this.renderSortItems(setSortBy)}
-            </div>
+            </Wrapper>
         )
     }
 }

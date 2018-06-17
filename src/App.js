@@ -11,6 +11,8 @@ import SearchBar from './components/SearchBar';
 const R = require('ramda');
 
 const Wrapper = styled.div`
+  font-family: sans-serif;
+  color: ${colors.dark};
   display: flex;
   flex-direction: column;
 `;
@@ -75,7 +77,7 @@ class App extends Component {
   componentDidMount() {
     axios.get(endpoint)
       .then(res => this.setState({movieData: res.data}))
-      .catch(err => console.log(err));
+      .catch(err => console.log(err.message));
   }
 
   getNormalizedData(data) {

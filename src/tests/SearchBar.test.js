@@ -9,6 +9,6 @@ it('runs setSearchValue when typing in input field', () => {
     const setSearchValue = jest.fn();
     const component = getComponent({setSearchValue});
     
-    component.simulate('change', { target: { value: 'f' } })
+    component.children(0).at(0).simulate('change', { target: { value: 'f' } })
     expect(setSearchValue.mock.calls.length).toBe(1);
 });

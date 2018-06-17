@@ -1,11 +1,11 @@
 import React from 'react';
-import {css} from 'react-emotion';
+import styled from 'react-emotion';
 import PropTypes from 'prop-types';
 import MovieListItem from './MovieListItem';
 
 const R = require('ramda');
 
-const movieList = css`
+const List = styled.ul`
   width: 100%;
 `;
 
@@ -22,7 +22,7 @@ const getItem = onClick => m => {
 const MovieList = (props) => {
   const {movies, onClick} = props;
 
-  return <ul className={movieList}>{R.map(getItem(onClick), movies)}</ul>
+  return <List>{R.map(getItem(onClick), movies)}</List>
 }
 
 MovieList.propTypes = {

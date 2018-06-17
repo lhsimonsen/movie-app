@@ -11,7 +11,7 @@ const Wrapper = styled.div`
   top: 35px;
   left: 0;
   width: 300px;
-  background: #fafafa;
+  background: #fff;
   border: ${borders.primary};
   border-radius: ${borders.slight};
   font-size: 11px;
@@ -28,7 +28,7 @@ const Header = styled.span`
   font-weight: 600;
 `;
 
-const Icon = css`
+const iconStyle = css`
   float: right;
   cursor: pointer;
   transition: ${transitions.basic};
@@ -56,7 +56,7 @@ const SortByList = (props) => {
       <Dismiss>
           <Header>Sort by</Header>
           <MdClose
-            className={Icon}
+            className={iconStyle}
             onClick={() => onCloseSort()}
           />
       </Dismiss>

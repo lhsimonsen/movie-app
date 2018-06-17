@@ -1,12 +1,14 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
 import {shallow} from 'enzyme';
 import App from '../App';
 
-it('renders without crashing', () => {
-  const div = document.createElement('div');
-  ReactDOM.render(<App />, div);
-  ReactDOM.unmountComponentAtNode(div);
+const flushPromises = () => new Promise(resolve => setImmediate(resolve));
+
+it('App snapshot test', async () => {
+  const wrapper = shallow(<App />);
+  await flushPromises();
+  wrapper.update();
+  expect(wrapper).toMatchSnapshot();
 });
 
 it('renders a movie list', () => {
