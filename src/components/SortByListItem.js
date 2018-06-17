@@ -8,9 +8,6 @@ const Item = styled.li`
     padding: 10px;
     border-bottom: ${borders.primary};
     transition: ${transitions.basic};
-    &.last-child {
-        border-bottom: none;
-    }
     &:hover {
         background-color: ${colors.primary}
     }

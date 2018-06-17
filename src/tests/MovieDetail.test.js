@@ -10,7 +10,7 @@ it('renders an empty state if no movie is selected', () => {
     const component = getComponent();
     const emptyState = component.find(".movie-detail-empty");
 
-    expect(emptyState.text()).toEqual("No movie selected");
+    expect(emptyState.children(0).text()).toEqual("No movie selected");
 });
 
 it('renders movie info if a movie is selected', () => {

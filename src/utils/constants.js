@@ -14,3 +14,9 @@ export const borders = {
 export const transitions = {
     basic: `all .2s ease-in-out`,
 }
+
+export const breakpoints = {
+    tablet: 700,
+}
+
+export const endpoint = "https://star-wars-api.herokuapp.com/films";

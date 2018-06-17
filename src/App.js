@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
-import styled from 'react-emotion'
+import styled from 'react-emotion';
+import axios from 'axios';
 import {flattenMovie, sortByProp, filterByValue} from './utils';
-import {testData} from './utils/test-data'; // TODO: use real endpoint
-import {colors, borders} from './utils/constants';
+import {colors, borders, breakpoints, endpoint} from './utils/constants';
 import MovieList from './components/MovieList';
 import MovieDetail from './components/MovieDetail';
 import SortBy from './components/SortBy';
@@ -16,9 +16,13 @@ const Wrapper = styled.div`
 `;
 
 const Outer = styled.div`
-  flex: 1;
-  display: flex;
-  flex-direction: row;
+  display: block;
+
+  @media (min-width: ${breakpoints.tablet}px) {
+    flex: 1;
+    display: flex;
+    flex-direction: row;
+  }
 
   .dark {
     background: ${colors.primary};
@@ -29,15 +33,26 @@ const Outer = styled.div`
 
 const Inner = styled.div`
   position: relative;
-  display: flex;
   flex: 1;
 
+  .base {
+    display: flex;
+  }
   .left {
     border-right: ${borders.primary};
-  }
+    display: block;
 
+    @media (min-width: ${breakpoints.tablet}px) {
+      display: flex;
+    }
+  }
   .right {
     padding: 30px;
+    display: block;
+
+    @media (min-width: ${breakpoints.tablet}px) {
+      display: flex;
+    }
   }
 `;
 
@@ -48,12 +63,19 @@ class App extends Component {
     this.state = {
       currentMovie: null,
       sortBy: null,
-      searchValue: ""
+      searchValue: "",
+      movieData: []
     }
 
     this.getSortedMovies = this.getSortedMovies.bind(this);
     this.getFilteredMovies = this.getFilteredMovies.bind(this);
     this.setSortBy = this.setSortBy.bind(this);
+  }
+
+  componentDidMount() {
+    axios.get(endpoint)
+      .then(res => this.setState({movieData: res.data}))
+      .catch(err => console.log(err));
   }
 
   getNormalizedData(data) {
@@ -84,13 +106,13 @@ class App extends Component {
 
   render() {
     const {currentMovie, searchValue} = this.state;
-    const movies = R.compose(this.getNormalizedData)(testData);
+    const movies = R.compose(this.getNormalizedData)(this.state.movieData);
     const filteredMovies = R.compose(this.getFilteredMovies, this.getSortedMovies)(movies);
 
     return (
       <Wrapper>
         <Outer className="dark">
-          <Inner>
+          <Inner className="base">
             <SortBy setSortBy={value => this.setSortBy(value)}/>
             <SearchBar
               searchValue={searchValue}
