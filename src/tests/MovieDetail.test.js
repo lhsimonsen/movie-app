@@ -16,7 +16,7 @@ it('renders an empty state if no movie is selected', () => {
 it('renders movie info if a movie is selected', () => {
     const component = getComponent({movie});
 
-    expect(component.find(".movie-detail-title").text()).toEqual("Foo");
-    expect(component.find(".movie-detail-description").text()).toEqual("foo foo foo");
-    expect(component.find(".movie-detail-director").text()).toEqual("Foo Bar");
+    expect(component.find(".movie-detail-title").length).toEqual(1);
+    expect(component.find(".movie-detail-description").length).toEqual(1);
+    expect(component.find(".movie-detail-director").length).toEqual(1);
 });
